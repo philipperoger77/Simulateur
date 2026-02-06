@@ -1,8 +1,8 @@
 """
 ╔════════════════════════════════════════════════════════════════════════════╗
-║   ACTÉRIM - Simulateur de Paie BTP V7                                      ║
-║   Base de données complète : Taux + Transport + Trajet + Repas Soumis     ║
-║   Barème 2026 : SMIC 12.02€/h - Découché 51.60€ - Repas 21.40€            ║
+║   ACTERIM - Simulateur de Paie                                             ║
+║   Base de données complète : Taux + Transport + Trajet + Repas Soumis      ║
+║   Barème 2026 : SMIC 12.02€/h - Découché 51.60€ - Repas 21.40€             ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 """
 
