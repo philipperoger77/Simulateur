@@ -12,7 +12,7 @@ Simulateur de calcul de paie pour le secteur du BTP avec gestion complète des c
 - Heures normales et supplémentaires (25% et 50%)
 - Cotisations salariales et patronales détaillées
 - Net imposable et net à payer
-- Retenue à la source (PAS)
+- Retenue à la source (RAS)
 
 ### 🚗 Gestion des déplacements
 - **Grand Déplacement** : Indemnités repas et découchés
@@ -26,7 +26,7 @@ Simulateur de calcul de paie pour le secteur du BTP avec gestion complète des c
 - Calcul du coût intérimaire complet
 - Marge cible configurable
 - Taux horaire client
-- Gestion des refacturations
+
 
 ### 🔒 Sécurité
 - Accès protégé par mot de passe pour les sections sensibles
@@ -38,7 +38,6 @@ Simulateur de calcul de paie pour le secteur du BTP avec gestion complète des c
 - Mode Expert (saisie manuelle de tous les paramètres)
 - Repas automatiques pour atteindre le net cible
 - Gestion du logement (coût et participation salarié)
-- Attestation fiscale simplifiée
 - Options IFM et ICCP
 
 ## 📊 Base de données Petit Déplacement
