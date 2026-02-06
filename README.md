@@ -1,4 +1,4 @@
-# 🏗️ Simulateur de Paie BTP - ACTÉRIM
+# 🏗️ Simulateur de Paie BTP - ACTERIM
 
 Simulateur de calcul de paie pour le secteur du BTP avec gestion complète des cotisations, heures supplémentaires, indemnités de déplacement et facturation client.
 
@@ -136,7 +136,7 @@ Les mises à jour sont automatiquement déployées dès qu'un fichier est modifi
 ## 📞 Support
 
 Pour toute question ou problème :
-- 📧 Email : support@acterim.fr
+- 📧 Email : philippe.roger@acterim.fr
 - 📝 Issues GitHub : Créer une issue sur ce repository
 
 ## 📄 Licence
@@ -146,5 +146,5 @@ Pour toute question ou problème :
 ---
 
 **Version** : 7.0
-**Dernière mise à jour** : Janvier 2025
+**Dernière mise à jour** : Janvier 2026
 **Barème** : 2026
