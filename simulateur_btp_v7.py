@@ -1216,7 +1216,7 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align: center; color: #5a6c7d; padding: 20px;">
     <p style="margin: 0;">
-        <strong style="color: #202E3B;">Actérim</strong> - Simulateur de Paie P ROGER
+        <strong style="color: #202E3B;">Actérim</strong> - Simulateur de Paie Philippe ROGER
     </p>
     <p style="margin: 5px 0 0 0; font-size: 12px;">
         Version Streamlit - Barème 2026
