@@ -414,15 +414,17 @@ with st.sidebar:
         taux_brut_auto = lookup_taux_horaire(departement, niveau)
         if taux_brut_auto:
             st.info(f"💡 Taux horaire min : **{taux_brut_auto:.2f}€/h** ({departement} - {niveau})")
-            # Slider avec minimum = taux auto
-            taux_brut = st.slider("Taux Horaire Brut (€/h)", taux_brut_auto, 25.0, taux_brut_auto, 0.01,
-                                 help=f"Minimum conventionnel : {taux_brut_auto:.2f}€/h")
+            taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=taux_brut_auto, max_value=25.0,
+                                        value=taux_brut_auto, step=0.01, format="%.2f",
+                                        help=f"Minimum conventionnel : {taux_brut_auto:.2f}€/h")
         else:
             st.warning(f"⚠️ Département {departement} introuvable, saisie manuelle")
-            taux_brut = st.slider("Taux Horaire Brut (€/h)", 12.02, 25.0, 12.02, 0.01)
+            taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=12.02, max_value=25.0,
+                                        value=12.02, step=0.01, format="%.2f")
     else:
-        taux_brut = st.slider("Taux Horaire Brut (€/h)", 12.02, 25.0, 12.02, 0.01, 
-                             help="Minimum = SMIC 12.02€/h")
+        taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=12.02, max_value=25.0,
+                                    value=12.02, step=0.01, format="%.2f",
+                                    help="Minimum = SMIC 12.02€/h")
     
     taux_net = st.slider("Net €/h promis", 8.0, 20.0, 14.0, 0.5)
     prime_brute = st.number_input("Prime Brute Hebdomadaire (€)", 0.0, 10000.0, 0.0, 10.0)
