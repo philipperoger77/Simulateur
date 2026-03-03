@@ -404,6 +404,7 @@ with st.sidebar:
     st.subheader("⏰ Temps de travail")
     heures_semaine = st.slider("Heures travaillées", 35, 48, 41, 1)
     jours_travailles = st.number_input("Jours travaillés", 1, 7, 5, 1)
+    heures_nuit = st.slider("Dont heures de nuit", 0, heures_semaine, 0, 1)
     
     # 5. RÉMUNÉRATION
     st.markdown("---")
@@ -490,7 +491,10 @@ with st.sidebar:
     
     st.caption("À partir de la 44ème heure")
     majo_sup_2 = st.slider("Majoration % (44h+)", 0, 100, 50, 5, key="majo2")
-    
+
+    st.caption("Heures de nuit (non cumulables avec les heures sup)")
+    majo_nuit = st.slider("Majoration Heures de Nuit %", 0, 100, 10, 5, key="majo_nuit")
+
     # 7. INDEMNITÉS GD (si Grand Déplacement)
     st.markdown("---")
     if grand_deplacement:
@@ -626,8 +630,11 @@ brut_sup_total = brut_sup_t1 + brut_sup_t2
 
 brut_base = brut_normales + brut_sup_total
 
-# Ajout primes (hebdo + primes brutes PD)
-brut_avant_ifm = brut_base + prime + total_prime_repas_brut + total_prime_trajet_brut
+# Majoration heures de nuit (jamais cumulée avec HS, s'ajoute comme une prime)
+majo_nuit_montant = heures_nuit * brut_h * (majo_nuit / 100)
+
+# Ajout primes (hebdo + primes brutes PD + majoration nuit)
+brut_avant_ifm = brut_base + prime + total_prime_repas_brut + total_prime_trajet_brut + majo_nuit_montant
 ifm = brut_avant_ifm * 0.10 if payer_ifm else 0.0
 brut_majoré = brut_avant_ifm + ifm
 iccp = brut_majoré * 0.10 if payer_iccp else 0.0
@@ -898,13 +905,23 @@ with st.expander("💵 SALAIRE BRUT (Détails et formules)", expanded=True):
     with col2:
         if ifm > 0:
             st.metric("IFM (10%)", f"{ifm:.2f} €")
-            st.markdown(f'<div class="formula-box">{brut_avant_ifm:.2f}€ × 0.10 = {ifm:.2f}€</div>', 
+            st.markdown(f'<div class="formula-box">{brut_avant_ifm:.2f}€ × 0.10 = {ifm:.2f}€</div>',
                        unsafe_allow_html=True)
     with col3:
         if iccp > 0:
             st.metric("ICCP (10%)", f"{iccp:.2f} €")
-            st.markdown(f'<div class="formula-box">{brut_majoré:.2f}€ × 0.10 = {iccp:.2f}€</div>', 
+            st.markdown(f'<div class="formula-box">{brut_majoré:.2f}€ × 0.10 = {iccp:.2f}€</div>',
                        unsafe_allow_html=True)
+
+    if majo_nuit_montant > 0:
+        st.markdown("### Majoration Heures de Nuit")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Heures de nuit", f"{heures_nuit}h (+{majo_nuit}%)")
+            st.markdown(f'<div class="formula-box">{heures_nuit}h × {brut_h:.2f}€ × {majo_nuit/100:.2f} = {majo_nuit_montant:.2f}€</div>',
+                       unsafe_allow_html=True)
+        with col2:
+            st.info("💡 Incluse dans la base IFM et CP")
     
     # Afficher les primes brutes PD si présentes
     if total_prime_repas_brut > 0 or total_prime_trajet_brut > 0:
