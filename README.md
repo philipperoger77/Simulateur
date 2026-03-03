@@ -10,6 +10,8 @@ Simulateur de calcul de paie pour le secteur du BTP avec gestion complète des c
 
 ### ✅ Calculs de paie complets
 - Heures normales et supplémentaires (25% et 50%)
+- **Heures de nuit** : saisie du nombre d'heures et majoration configurable (non cumulable avec les heures sup, impacte IFM et CP)
+- Taux horaire brut en saisie numérique précise (min conventionnel automatique en Petit Déplacement)
 - Cotisations salariales et patronales détaillées
 - Net imposable et net à payer
 - Retenue à la source (RAS)
@@ -68,8 +70,8 @@ Le simulateur utilise une base de données Excel (`BASE_DE_DONNE_PD.xlsx`) conte
 
 1. **Cloner le repository**
 ```bash
-git clone https://github.com/votre-username/simulateur-btp-acterim.git
-cd simulateur-btp-acterim
+git clone https://github.com/philipperoger77/Simulateur.git
+cd Simulateur
 ```
 
 2. **Installer les dépendances**
@@ -140,10 +142,10 @@ Pour toute question ou problème :
 
 ## 📄 Licence
 
-© 2025 ACTÉRIM - Tous droits réservés
+© 2026 ACTÉRIM - Tous droits réservés
 
 ---
 
 **Version** : 7.0
-**Dernière mise à jour** : Janvier 2026
+**Dernière mise à jour** : Mars 2026
 **Barème** : 2026
