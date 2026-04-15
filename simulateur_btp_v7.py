@@ -570,7 +570,7 @@ with st.sidebar:
     # 11. MARGE
     st.markdown("---")
     st.subheader("📊 Marge cible")
-    marge_pct = st.slider("Marge %", 10.0, 25.0, 17.0, 0.5)
+    marge_pct = st.number_input("Marge %", min_value=0.0, max_value=100.0, value=17.0, step=0.01, format="%.2f")
 
 # ═══════════════════════════════════════════════════════════════════════════
 # CALCULS DÉTAILLÉS
@@ -1162,7 +1162,7 @@ if acces_details:
             st.write(f"✅ Coût refacturation : +{ca_refactu:.2f} € ({nb_refact:.1f} × {taux_refact:.2f}€)")
             st.metric("**Coût TOTAL**", f"**{cout_total_avec_refactu_comptable:.2f} €**")
 
-        st.write(f"Marge cible ({marge_pct:.1f}%) : {marge_euro_comptable:.2f} €")
+        st.write(f"Marge cible ({marge_pct:.2f}%) : {marge_euro_comptable:.2f} €")
 
         st.markdown("---")
         st.metric("**CA HT NÉCESSAIRE**", f"**{ca_ht_comptable:.2f} €**")
@@ -1181,7 +1181,7 @@ if acces_details:
                     st.write(f"✅ Coût refacturation : +{ca_refactu:.2f} €")
                     st.metric("**Coût TOTAL**", f"**{cout_total_avec_refactu_tresorerie:.2f} €**")
             
-                st.write(f"Marge cible ({marge_pct:.1f}%) : {marge_euro_tresorerie:.2f} €")
+                st.write(f"Marge cible ({marge_pct:.2f}%) : {marge_euro_tresorerie:.2f} €")
             
                 st.markdown("---")
                 st.metric("**CA HT NÉCESSAIRE**", f"**{ca_ht_tresorerie:.2f} €**")
@@ -1201,7 +1201,7 @@ if acces_details:
 
 **Facturation :**
 - CA HT : {ca_ht_comptable:.2f} €
-- Marge : {marge_euro_comptable:.2f} € ({marge_pct:.1f}%)
+- Marge : {marge_euro_comptable:.2f} € ({marge_pct:.2f}%)
 - Taux horaire : {taux_fact_comptable:.2f} €/h
 """
         st.info(resume_text)
