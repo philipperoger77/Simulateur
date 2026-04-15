@@ -856,17 +856,15 @@ cout_total_tresorerie = cout_total_comptable + regul
 
 ca_refactu = nb_refact * taux_refact
 
-# CA HT : marge sur le coût TOTAL (intérimaire + refacturation)
-cout_total_avec_refactu_comptable = cout_total_comptable + ca_refactu
-ca_ht_comptable = cout_total_avec_refactu_comptable / (1 - marge)
+# CA HT : marge sur le coût intérimaire uniquement, refacturation ajoutée en CA direct
+ca_ht_comptable = (cout_total_comptable / (1 - marge)) + ca_refactu
 taux_fact_comptable = ca_ht_comptable / h
-marge_euro_comptable = ca_ht_comptable - cout_total_avec_refactu_comptable
+marge_euro_comptable = ca_ht_comptable - cout_total_comptable - ca_refactu
 coeff_comptable = taux_fact_comptable / brut_h
 
-cout_total_avec_refactu_tresorerie = cout_total_tresorerie + ca_refactu
-ca_ht_tresorerie = cout_total_avec_refactu_tresorerie / (1 - marge)
+ca_ht_tresorerie = (cout_total_tresorerie / (1 - marge)) + ca_refactu
 taux_fact_tresorerie = ca_ht_tresorerie / h
-marge_euro_tresorerie = ca_ht_tresorerie - cout_total_avec_refactu_tresorerie
+marge_euro_tresorerie = ca_ht_tresorerie - cout_total_tresorerie - ca_refactu
 coeff_tresorerie = taux_fact_tresorerie / brut_h
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1158,14 +1156,13 @@ if acces_details:
 
         st.markdown("---")
         st.metric("**Coût total intérimaire**", f"**{cout_total_comptable:.2f} €**")
-        if ca_refactu > 0:
-            st.write(f"✅ Coût refacturation : +{ca_refactu:.2f} € ({nb_refact:.1f} × {taux_refact:.2f}€)")
-            st.metric("**Coût TOTAL**", f"**{cout_total_avec_refactu_comptable:.2f} €**")
 
         st.write(f"Marge cible ({marge_pct:.2f}%) : {marge_euro_comptable:.2f} €")
 
         st.markdown("---")
         st.metric("**CA HT NÉCESSAIRE**", f"**{ca_ht_comptable:.2f} €**")
+        if ca_refactu > 0:
+            st.write(f"✅ dont refacturation : +{ca_refactu:.2f} € ({nb_refact:.1f} × {taux_refact:.2f}€)")
         st.metric("**Taux facturation client**", f"**{taux_fact_comptable:.2f} €/h**")
 
         # MODE TRÉSORERIE (caché dans expander)
@@ -1177,14 +1174,13 @@ if acces_details:
             
                 st.markdown("---")
                 st.metric("**Coût total avec avance**", f"**{cout_total_tresorerie:.2f} €**")
-                if ca_refactu > 0:
-                    st.write(f"✅ Coût refacturation : +{ca_refactu:.2f} €")
-                    st.metric("**Coût TOTAL**", f"**{cout_total_avec_refactu_tresorerie:.2f} €**")
-            
+
                 st.write(f"Marge cible ({marge_pct:.2f}%) : {marge_euro_tresorerie:.2f} €")
-            
+
                 st.markdown("---")
                 st.metric("**CA HT NÉCESSAIRE**", f"**{ca_ht_tresorerie:.2f} €**")
+                if ca_refactu > 0:
+                    st.write(f"✅ dont refacturation : +{ca_refactu:.2f} €")
                 st.metric("**Taux facturation client**", f"**{taux_fact_tresorerie:.2f} €/h**")
 else:
     st.info("🔒 Saisissez le mot de passe pour accéder aux détails de la facturation client")
@@ -1200,7 +1196,7 @@ if acces_details:
 - ICCP : {"✅ Oui" if payer_iccp else "❌ Non"}
 
 **Facturation :**
-- CA HT : {ca_ht_comptable:.2f} €
+- CA HT : {ca_ht_comptable:.2f} €{f" (dont refactu : {ca_refactu:.2f} €)" if ca_refactu > 0 else ""}
 - Marge : {marge_euro_comptable:.2f} € ({marge_pct:.2f}%)
 - Taux horaire : {taux_fact_comptable:.2f} €/h
 """
