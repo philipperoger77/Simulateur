@@ -559,7 +559,7 @@ with st.sidebar:
     st.markdown("---")
     st.subheader("🏠 Frais logement")
     logement_hebdo = st.number_input("Logement hors paie €/sem", 0.0, 500.0, 0.0, 10.0)
-    cout_logement_salarie = st.number_input("Participation salarié au logement (€/sem)", 0.0, 500.0, 0.0, 10.0)
+    cout_logement_salarie = st.number_input("Participation salarié au logement (€/sem)", 0.0, 500.0, 0.0, 5.0)
     
     # 10. REFACTURATION
     st.markdown("---")
