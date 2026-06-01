@@ -2,7 +2,7 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║   ACTERIM - Simulateur de Paie                                             ║
 ║   Base de données complète : Taux + Transport + Trajet + Repas Soumis      ║
-║   Barème 2026 : SMIC 12.02€/h - Découché 51.60€ - Repas 21.40€             ║
+║   Barème 2026 : SMIC 12.31€/h - Découché 51.60€ - Repas 21.40€             ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 """
 
@@ -279,7 +279,7 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown("**Barème 2026** : SMIC 12.02€/h • Découché 51.60€ • Repas GD 21.40€ • Repas PD 10.40€ • PMSS 4005€")
+st.markdown("**Barème 2026** : SMIC 12.31€/h • Découché 51.60€ • Repas GD 21.40€ • Repas PD 10.40€ • PMSS 4005€")
 
 # Mot de passe pour accès détails
 st.markdown("---")
@@ -420,12 +420,12 @@ with st.sidebar:
                                         help=f"Minimum conventionnel : {taux_brut_auto:.2f}€/h")
         else:
             st.warning(f"⚠️ Département {departement} introuvable, saisie manuelle")
-            taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=12.02, max_value=25.0,
-                                        value=12.02, step=0.01, format="%.2f")
+            taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=12.31, max_value=25.0,
+                                        value=12.31, step=0.01, format="%.2f")
     else:
-        taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=12.02, max_value=25.0,
-                                    value=12.02, step=0.01, format="%.2f",
-                                    help="Minimum = SMIC 12.02€/h")
+        taux_brut = st.number_input("Taux Horaire Brut (€/h)", min_value=12.31, max_value=25.0,
+                                    value=12.31, step=0.01, format="%.2f",
+                                    help="Minimum = SMIC 12.31€/h")
     
     taux_net = st.slider("Net €/h promis", 8.0, 20.0, 14.0, 0.5)
     prime_brute = st.number_input("Prime Brute Hebdomadaire (€)", 0.0, 10000.0, 0.0, 10.0)
